@@ -10,6 +10,26 @@ body {
     min-height: 100vh;
 }
 
+/* Responsive base rules */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-size: clamp(14px, 1.2vw + 12px, 18px);
+}
+
+/* Make images and media scale on smaller screens */
+img, picture, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Header (Blijft bovenaan) */
 header {
     background-color: #a80000;
@@ -20,7 +40,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     font-family: 'Arial Black', sans-serif;
     letter-spacing: 2px;
 }
@@ -40,10 +60,12 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 nav li {
-    margin: 0 15px;
+    margin: 0 12px;
 }
 
 /* Afgeronde knoppen */
@@ -89,6 +111,13 @@ nav a:hover {
     overflow-y: auto;
     
     margin: 0 auto; 
+}
+
+/* Make tables scroll horizontally on small devices */
+#menu table, .content-section table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
 }
 
 .content-section.active {
@@ -169,13 +198,61 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #e92d2d;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     width: 100%;
 }
 
 .hero h2 {
-    font-size: 3em;
+    font-size: clamp(1.4rem, 6vw, 3rem);
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 900px) {
+    .content-section {
+        padding: 20px;
+        max-width: 92%;
+    }
+
+    nav a {
+        padding: 10px 16px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav li {
+        margin: 6px 0;
+    }
+
+    header h1 {
+        font-size: clamp(1.25rem, 6vw, 1.8rem);
+    }
+
+    .main-container {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .content-section {
+        padding: 16px;
+        margin: 8px auto;
+        text-align: left;
+        max-height: none;
+    }
+
+    .content-section p,
+    .content-section ul,
+    .content-section ol {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 /* Disabled button styling */
