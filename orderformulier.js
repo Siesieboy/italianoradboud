@@ -1,3 +1,6 @@
+function openSuccessModal() { document.getElementById('successModal').style.display = 'flex'; }
+function closeSuccessModal() { document.getElementById('successModal').style.display = 'none'; }
+
 // Form validation & API submit
 (function () {
   const form = document.getElementById("orderForm");
@@ -57,7 +60,7 @@
         throw new Error(json.message || "Onbekende fout");
       }
 
-      alert("Bestelling verzonden");
+      openSuccessModal()
       form.reset();
       updateSubmitState();
 
